@@ -1,4 +1,4 @@
-import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 import {
   StyledListItem,
@@ -14,9 +14,14 @@ const MovieListItem = ({ movie }) => {
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     : defaultImg;
 
+  const location = useLocation();
+
   return (
     <StyledListItem>
-      <StyledLink to={`/movies/${movie.id}`}>
+      <StyledLink
+        to={`/movies/${movie.id}`}
+        state={{ from: location.pathname + location.search }}
+      >
         <StyledImg src={posterUrl} alt={movie.title || movie.name} />
         <MovieTitle>{movie.title || movie.name}</MovieTitle>
       </StyledLink>

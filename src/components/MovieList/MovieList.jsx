@@ -3,6 +3,8 @@ import MovieListItem from './MovieListItem';
 import { StyledList } from './MovieList.styled';
 
 const MovieList = ({ movies }) => {
+  console.log(movies);
+
   return (
     <StyledList>
       {movies.map(movie => (

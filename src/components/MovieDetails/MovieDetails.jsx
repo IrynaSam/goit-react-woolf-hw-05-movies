@@ -21,6 +21,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
+  console.log(location);
 
   useEffect(() => {
     getMovieDetails(movieId).then(setMovie).catch(console.error);
@@ -39,10 +40,8 @@ const MovieDetails = () => {
   return (
     <DetailsWrapper>
       <Wrapper>
-        {' '}
         <MoviePoster src={posterUrl} alt={movie.title} />
         <MovieContent>
-          {' '}
           <MovieTitle>
             {movie.title} ({new Date(movie.release_date).getFullYear()})
           </MovieTitle>
@@ -55,7 +54,9 @@ const MovieDetails = () => {
           </GenreList>
         </MovieContent>
       </Wrapper>
-      <BackLink to={backLinkHref}>← Go back</BackLink>
+      <BackLink to={backLinkHref} state={location.state}>
+        ← Go back
+      </BackLink>
       <AdditionalInfo>
         <InfoTitle>Additional information</InfoTitle>
         <InfoList>
